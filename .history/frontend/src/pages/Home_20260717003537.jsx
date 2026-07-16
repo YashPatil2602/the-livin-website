@@ -26,8 +26,8 @@ function Home() {
         <
         FloorPlans / >
         <
-        /main> < /
-        >
+        /main> <
+        />
     );
 }
 
