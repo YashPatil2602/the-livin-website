@@ -657,7 +657,6 @@
     }
 }
 
-
 /* =====================================================
    AMENITIES IMAGE CARDS
 ===================================================== */
@@ -705,7 +704,11 @@
 .amenity-image-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient( 180deg, transparent 45%, rgba(25, 14, 15, 0.4) 100%);
+    background: linear-gradient(
+        180deg,
+        transparent 45%,
+        rgba(25, 14, 15, 0.4) 100%
+    );
 }
 
 .amenity-card:hover .amenity-image {
@@ -749,6 +752,7 @@
     .amenities-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
     .amenity-card:nth-child(n) {
         grid-column: span 1;
     }
@@ -758,6 +762,7 @@
     .amenities-grid {
         grid-template-columns: 1fr;
     }
+
     .amenity-image-wrapper {
         height: 230px;
     }

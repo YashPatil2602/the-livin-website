@@ -51,8 +51,8 @@ function Highlights() {
         <
         p >
         Modern residences, lifestyle amenities and convenient connectivity come together at The Livin. <
-        /p> < /
-        div >
+        /p> <
+        /div>
 
         <
         div className = "highlights-grid" > {
@@ -71,14 +71,14 @@ function Highlights() {
                 h3 > { highlight.title } < /h3>
 
                 <
-                p > { highlight.description } < /p> < /
-                article >
+                p > { highlight.description } < /p> <
+                /article>
             ))
         } <
-        /div> < /
-        div > <
+        /div> <
+        /div> <
         /section>
     );
 }
 
-export default Highlights;
+export default Highlights
