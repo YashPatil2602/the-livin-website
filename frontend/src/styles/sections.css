@@ -199,7 +199,7 @@
 ===================================================== */
 
 .overview-section {
-    scroll-margin-top: 76px;
+    scroll-margin-top: 95px;
     padding: 110px 0;
     background: var(--cream);
 }
@@ -370,7 +370,7 @@
 ===================================================== */
 
 .highlights-section {
-    scroll-margin-top: 76px;
+    scroll-margin-top: 95px;
     padding: 110px 0;
     background: var(--white);
 }
@@ -577,7 +577,7 @@
 ===================================================== */
 
 .amenities-section {
-    scroll-margin-top: 76px;
+    scroll-margin-top: 95px;
     padding: 110px 0;
     background: var(--cream);
 }
@@ -769,7 +769,7 @@
 ===================================================== */
 
 .floor-plans-section {
-    scroll-margin-top: 76px;
+    scroll-margin-top: 95px;
     padding: 110px 0;
     background: #211b1a;
 }
@@ -1032,7 +1032,7 @@
 ===================================================== */
 
 .gallery-section {
-    scroll-margin-top: 76px;
+    scroll-margin-top: 95px;
     padding: 110px 0;
     background: var(--cream);
 }
@@ -1888,3 +1888,4 @@
         padding: 35px 22px;
     }
 }
+
