@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap");
+:root {
+    --primary: #762f27;
+    --primary-dark: #441a16;
+    --accent: #c77b5d;
+    --cream: #f7eee8;
+    --white: #ffffff;
+    --dark: #171314;
+    --text: #342e2d;
+    --muted: #746b68;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 320px;
+    background: var(--white);
+    color: var(--text);
+    font-family: "Montserrat", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.overview-placeholder {
+    padding: 100px 0;
+    background: var(--cream);
+}
+
+.section-container {
+    width: min(900px, 90%);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-eyebrow {
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.section-container h2 {
+    margin: 12px 0 18px;
+    color: var(--dark);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.7rem, 6vw, 4.2rem);
+}
+
+.section-container>p:last-child {
+    color: var(--muted);
+    line-height: 1.9;
+}

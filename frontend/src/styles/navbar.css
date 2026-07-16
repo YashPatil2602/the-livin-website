@@ -1,0 +1,138 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(18, 14, 15, 0.94);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+}
+
+.navbar-container {
+    width: min(1380px, 92%);
+    min-height: 76px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    color: var(--white);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.navbar-logo span {
+    color: var(--accent);
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.navbar-menu>a:not(.mobile-brochure-button) {
+    position: relative;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.73rem;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.navbar-menu>a:not(.mobile-brochure-button)::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.navbar-menu>a:hover::after {
+    width: 100%;
+}
+
+.desktop-brochure-button,
+.mobile-brochure-button {
+    padding: 12px 17px;
+    border: 1px solid var(--accent);
+    color: var(--white);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+.desktop-brochure-button:hover,
+.mobile-brochure-button:hover {
+    background: var(--accent);
+}
+
+.mobile-brochure-button,
+.navbar-toggle {
+    display: none;
+}
+
+@media (max-width: 1050px) {
+    .desktop-brochure-button {
+        display: none;
+    }
+    .navbar-toggle {
+        display: flex;
+        border: none;
+        background: transparent;
+        color: var(--white);
+        font-size: 1.5rem;
+    }
+    .navbar-menu {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        padding: 30px 5%;
+        background: rgba(18, 14, 15, 0.99);
+        flex-direction: column;
+        align-items: flex-start;
+        transform: translateY(-130%);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s ease;
+    }
+    .navbar-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    .mobile-brochure-button {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 520px) {
+    .navbar-container {
+        width: 94%;
+        min-height: 68px;
+    }
+    .navbar-logo {
+        font-size: 1.5rem;
+    }
+    .navbar-menu {
+        top: 68px;
+    }
+}

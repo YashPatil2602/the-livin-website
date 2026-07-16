@@ -1,0 +1,28 @@
+hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 125px 0 70px;
+    display: flex;
+    align-items: center;
+    background-image: url("/images/banners/hero-desktop.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient( 90deg, rgba(10, 8, 10, 0.93) 0%, rgba(28, 18, 18, 0.72) 45%, rgba(10, 8, 10, 0.25) 75%, rgba(10, 8, 10, 0.45) 100%);
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    width: min(1380px, 92%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(330px, 420px);
+    align-items: center;
+    gap: 75px;
+}
