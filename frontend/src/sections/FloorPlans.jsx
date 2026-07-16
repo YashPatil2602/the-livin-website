@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 
 const floorPlans = [
     {
@@ -74,20 +74,16 @@ function FloorPlans() {
                     </p>
                 </div>
 
-                <div
-                    className="floor-plan-tabs"
-                    role="tablist"
-                    aria-label="Floor plan selection"
-                >
+                <div className="floor-plan-tabs">
                     {floorPlans.map((plan) => (
                         <button
                             key={plan.id}
                             type="button"
-                            role="tab"
-                            aria-selected={selectedPlanId === plan.id}
-                            className={`floor-plan-tab ${
-                                selectedPlanId === plan.id ? "active" : ""
-                            }`}
+                            className={
+                                selectedPlanId === plan.id
+                                    ? "floor-plan-tab active"
+                                    : "floor-plan-tab"
+                            }
                             onClick={() => setSelectedPlanId(plan.id)}
                         >
                             {plan.tabName}
@@ -125,7 +121,7 @@ function FloorPlans() {
 
                             <div>
                                 <span>Configuration</span>
-                                <strong>1 &amp; 2 BHK</strong>
+                                <strong>{"1 & 2 BHK"}</strong>
                             </div>
                         </div>
 
@@ -139,7 +135,7 @@ function FloorPlans() {
                         </a>
 
                         <a
-                            href="/images/brochure.pdf"
+                            href="/images/brochure.pdf.pdf"
                             target="_blank"
                             rel="noreferrer"
                             className="floor-plan-brochure-link"
