@@ -33,8 +33,7 @@ function Hero() {
         <
         div className = "hero-content" >
         <
-        p className = "hero-eyebrow" >
-        KALYAN & apos; S FUTURE SYMBOL <
+        p className = "hero-eyebrow" > { "KALYAN'S FUTURE SYMBOL" } <
         /p>
 
         <
@@ -51,9 +50,9 @@ function Hero() {
         <
         div className = "hero-features" >
         <
-        span > 1 & amp; 2 BHK Homes < /span> <
-        span > Premium Amenities < /span> <
-        span > Kalyan West < /span> < /
+        span > { "1 & 2 BHK HOMES" } < /span> <
+        span > PREMIUM AMENITIES < /span> <
+        span > KALYAN WEST < /span> < /
         div >
 
         <

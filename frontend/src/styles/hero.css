@@ -1,19 +1,26 @@
-hero {
+/* ================================
+   HERO SECTION
+================================ */
+
+.hero {
     position: relative;
     min-height: 100vh;
     padding: 125px 0 70px;
     display: flex;
     align-items: center;
-    background-image: url("/images/banners/hero-desktop.jpg");
+    overflow: hidden;
+    background-image: linear-gradient( 90deg, rgba(10, 8, 10, 0.9) 0%, rgba(22, 14, 16, 0.7) 45%, rgba(10, 8, 10, 0.3) 100%), url("/images/banners/hero-desktop.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+
+/* Hero.jsx contains this element, but the gradient is
+   already included in the background above. */
+
 .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient( 90deg, rgba(10, 8, 10, 0.93) 0%, rgba(28, 18, 18, 0.72) 45%, rgba(10, 8, 10, 0.25) 75%, rgba(10, 8, 10, 0.45) 100%);
+    display: none;
 }
 
 .hero-container {
@@ -22,7 +29,327 @@ hero {
     width: min(1380px, 92%);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(330px, 420px);
+    grid-template-columns: minmax(0, 1.4fr) minmax(340px, 420px);
     align-items: center;
-    gap: 75px;
+    gap: 70px;
+}
+
+
+/* ================================
+   HERO TEXT
+================================ */
+
+.hero-content {
+    max-width: 760px;
+    color: var(--white);
+}
+
+.hero-eyebrow {
+    margin-bottom: 18px;
+    color: #efb59d;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.hero-content h1 {
+    margin: 0;
+    color: var(--white);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(4.8rem, 9vw, 8.5rem);
+    font-weight: 600;
+    line-height: 0.82;
+    letter-spacing: 2px;
+}
+
+.hero-content h2 {
+    margin-top: 28px;
+    color: var(--white);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 500;
+}
+
+.hero-description {
+    max-width: 640px;
+    margin-top: 18px;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* ================================
+   HERO FEATURES
+================================ */
+
+.hero-features {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-features span {
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    backdrop-filter: blur(6px);
+}
+
+
+/* ================================
+   HERO BUTTONS
+================================ */
+
+.hero-actions {
+    margin-top: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.primary-button,
+.secondary-button {
+    min-width: 190px;
+    padding: 15px 23px;
+    border: 1px solid var(--accent);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.primary-button {
+    background: var(--accent);
+    color: var(--white);
+}
+
+.primary-button:hover {
+    background: #a95f46;
+    border-color: #a95f46;
+    transform: translateY(-2px);
+}
+
+.secondary-button {
+    background: transparent;
+    color: var(--white);
+}
+
+.secondary-button:hover {
+    background: var(--white);
+    border-color: var(--white);
+    color: var(--dark);
+    transform: translateY(-2px);
+}
+
+
+/* ================================
+   ENQUIRY CARD
+================================ */
+
+.enquiry-card {
+    width: 100%;
+    padding: 34px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.36);
+}
+
+.enquiry-label {
+    color: var(--primary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.enquiry-card h3 {
+    margin: 6px 0 0;
+    color: var(--dark);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.3rem;
+    line-height: 1.2;
+}
+
+.enquiry-description {
+    margin: 8px 0 22px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+
+/* ================================
+   FORM
+================================ */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--dark);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #ddd3cf;
+    background: var(--white);
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: #9b9390;
+}
+
+.form-group input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(199, 123, 93, 0.14);
+}
+
+.submit-button {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 4px;
+    border: none;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.enquiry-card small {
+    display: block;
+    margin-top: 14px;
+    color: #8d8380;
+    font-size: 0.62rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 1050px) {
+    .hero-container {
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 40px;
+    }
+    .hero-content h1 {
+        font-size: clamp(4.5rem, 9vw, 7rem);
+    }
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 820px) {
+    .hero {
+        min-height: auto;
+        padding: 110px 0 65px;
+        background-image: linear-gradient( 180deg, rgba(10, 8, 10, 0.42) 0%, rgba(10, 8, 10, 0.75) 48%, rgba(10, 8, 10, 0.97) 100%), url("/images/banners/hero-mobile.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    .hero-content {
+        padding-top: 120px;
+        text-align: center;
+    }
+    .hero-description {
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .hero-features,
+    .hero-actions {
+        justify-content: center;
+    }
+    .enquiry-card {
+        width: min(100%, 500px);
+        margin: 25px auto 0;
+    }
+}
+
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 520px) {
+    .hero {
+        padding: 80px 0 55px;
+    }
+    .hero-container {
+        width: 92%;
+    }
+    .hero-content {
+        padding-top: 90px;
+    }
+    .hero-eyebrow {
+        font-size: 0.68rem;
+        letter-spacing: 2.5px;
+    }
+    .hero-content h1 {
+        font-size: clamp(4rem, 20vw, 6rem);
+    }
+    .hero-content h2 {
+        margin-top: 22px;
+        font-size: 2rem;
+    }
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+    .hero-features {
+        gap: 8px;
+    }
+    .hero-features span {
+        padding: 8px 10px;
+        font-size: 0.62rem;
+    }
+    .hero-actions {
+        flex-direction: column;
+    }
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+    }
+    .enquiry-card {
+        padding: 25px 20px;
+    }
+    .enquiry-card h3 {
+        font-size: 2rem;
+    }
 }
