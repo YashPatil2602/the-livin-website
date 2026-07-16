@@ -1,4 +1,4 @@
-import {
+mport {
     FaBuilding,
     FaDumbbell,
     FaHome,
@@ -49,8 +49,8 @@ function Highlights() {
         <
         p >
         Discover a residential experience that combines modern homes, useful amenities and everyday convenience. <
-        /p> < /
-        div >
+        /p> <
+        /div>
 
         <
         div className = "highlights-grid" > {
@@ -67,12 +67,12 @@ function Highlights() {
 
                 <
                 h3 > { highlight.title } < /h3> <
-                p > { highlight.description } < /p> < /
-                article >
+                p > { highlight.description } < /p> <
+                /article>
             ))
         } <
-        /div> < /
-        div > <
+        /div> <
+        /div> <
         /section>
     );
 }

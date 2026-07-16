@@ -1,4 +1,6 @@
-﻿function Overview() {
+import { FaCheckCircle } from "react-icons/fa";
+
+function Overview() {
     const features = [
         "Thoughtfully designed 1 and 2 BHK residences",
         "Modern architecture with natural light and ventilation",
@@ -10,7 +12,7 @@
         section id = "overview"
         className = "overview-section" >
         <
-        div className = "overview-container" >
+        div className = "container overview-grid" >
         <
         div className = "overview-image-wrapper" >
         <
@@ -20,7 +22,7 @@
         >
 
         <
-        div className = "overview-badge" >
+        div className = "overview-image-badge" >
         <
         strong > { "1 & 2 BHK" } < /strong> <
         span > Premium Residences < /span> <
@@ -30,8 +32,8 @@
         <
         div className = "overview-content" >
         <
-        p className = "overview-kicker" >
-        Discover the Project <
+        p className = "section-kicker" >
+        DISCOVER THE PROJECT <
         /p>
 
         <
@@ -40,14 +42,14 @@
         <
         p className = "overview-introduction" >
         The Livin is a thoughtfully designed residential development created
-        for families seeking comfort,
+        for families looking
+        for comfort,
         convenience and an elevated lifestyle in Kalyan West. <
         /p>
 
         <
         p className = "overview-description" >
-        The project combines contemporary architecture,
-        functional home layouts and lifestyle amenities to create a comfortable modern living experience. <
+        The project offers modern residences with functional layouts, lifestyle amenities and well - planned common spaces.Every detail is designed to provide residents with a comfortable and contemporary living experience. <
         /p>
 
         <
@@ -55,7 +57,8 @@
             features.map((feature) => ( <
                 li key = { feature } >
                 <
-                span className = "overview-check" > ✓ < /span> <
+                FaCheckCircle / >
+                <
                 span > { feature } < /span> <
                 /li>
             ))
@@ -64,7 +67,7 @@
 
         <
         a href = "#amenities"
-        className = "overview-button" >
+        className = "section-button" >
         Explore Amenities <
         /a> <
         /div> <

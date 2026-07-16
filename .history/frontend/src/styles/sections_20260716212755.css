@@ -1,0 +1,319 @@
+/* ================================
+   COMMON SECTION STYLES
+================================ */
+
+.container {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+}
+
+.section-kicker {
+    margin-bottom: 12px;
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.section-heading {
+    max-width: 760px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.section-heading h2,
+.overview-content h2 {
+    color: var(--dark);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.section-heading > p:last-child {
+    margin-top: 18px;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.section-button {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 15px 24px;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.section-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* ================================
+   OVERVIEW SECTION
+================================ */
+
+.overview-section {
+    padding: 110px 0;
+    background: var(--cream);
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: 85px;
+}
+
+.overview-image-wrapper {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.overview-image {
+    width: 100%;
+    height: 590px;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 30px 70px rgba(35, 22, 20, 0.18);
+}
+
+.overview-image-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -22px;
+    left: -22px;
+    z-index: -1;
+    width: 75%;
+    height: 75%;
+    border: 2px solid var(--accent);
+}
+
+.overview-image-badge {
+    position: absolute;
+    right: -30px;
+    bottom: 45px;
+    min-width: 190px;
+    padding: 22px;
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: 0 18px 40px rgba(52, 23, 20, 0.25);
+}
+
+.overview-image-badge strong {
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2rem;
+    line-height: 1.1;
+}
+
+.overview-image-badge span {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.overview-content h2 {
+    margin-bottom: 24px;
+}
+
+.overview-introduction {
+    color: var(--dark);
+    font-size: 1.02rem;
+    font-weight: 500;
+    line-height: 1.9;
+}
+
+.overview-description {
+    margin-top: 18px;
+    color: var(--muted);
+    line-height: 1.9;
+}
+
+.overview-feature-list {
+    margin: 28px 0;
+    display: grid;
+    gap: 15px;
+    list-style: none;
+}
+
+.overview-feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--text);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.overview-feature-list svg {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: var(--accent);
+}
+
+/* ================================
+   HIGHLIGHTS SECTION
+================================ */
+
+.highlights-section {
+    padding: 110px 0;
+    background: var(--white);
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.highlight-card {
+    position: relative;
+    min-height: 285px;
+    padding: 38px 28px 30px;
+    overflow: hidden;
+    border: 1px solid #eee5e1;
+    background: var(--white);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-8px);
+    border-color: transparent;
+    box-shadow: 0 22px 55px rgba(43, 27, 24, 0.12);
+}
+
+.highlight-number {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    color: rgba(118, 47, 39, 0.12);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 3.7rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.highlight-icon {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 30px;
+    display: grid;
+    place-items: center;
+    background: rgba(199, 123, 93, 0.14);
+    color: var(--primary);
+    font-size: 1.35rem;
+}
+
+.highlight-card h3 {
+    margin-bottom: 13px;
+    color: var(--dark);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.65rem;
+    line-height: 1.2;
+}
+
+.highlight-card p {
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.75;
+}
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 1000px) {
+    .overview-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+
+    .overview-image {
+        height: 520px;
+    }
+
+    .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 720px) {
+    .overview-section,
+    .highlights-section {
+        padding: 80px 0;
+    }
+
+    .overview-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .overview-image-wrapper {
+        width: min(88%, 430px);
+    }
+
+    .overview-image {
+        height: 500px;
+    }
+
+    .overview-image-badge {
+        right: -15px;
+        bottom: 25px;
+    }
+
+    .overview-content {
+        text-align: center;
+    }
+
+    .overview-feature-list {
+        text-align: left;
+    }
+
+    .highlights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .highlight-card {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .overview-image {
+        height: 430px;
+    }
+
+    .overview-image-wrapper::before {
+        top: -14px;
+        left: -14px;
+    }
+
+    .overview-image-badge {
+        right: -8px;
+        min-width: 165px;
+        padding: 18px;
+    }
+
+    .overview-image-badge strong {
+        font-size: 1.7rem;
+    }
+}

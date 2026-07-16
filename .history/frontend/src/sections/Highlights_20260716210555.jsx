@@ -1,4 +1,4 @@
-import {
+mport {
     FaBuilding,
     FaDumbbell,
     FaHome,
