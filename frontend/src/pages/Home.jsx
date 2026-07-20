@@ -1,6 +1,9 @@
 ﻿import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
+import EnquiryPopup from "../components/common/EnquiryPopup";
+import FloatingContact from "../components/common/FloatingContact";
+
 import Hero from "../sections/Hero";
 import Overview from "../sections/Overview";
 import Highlights from "../sections/Highlights";
@@ -17,6 +20,8 @@ function Home() {
         <>
             <Navbar />
 
+            <EnquiryPopup />
+
             <main>
                 <Hero />
                 <Overview />
@@ -29,6 +34,8 @@ function Home() {
             </main>
 
             <Footer />
+
+            <FloatingContact />
         </>
     );
 }

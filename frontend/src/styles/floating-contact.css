@@ -1,0 +1,105 @@
+body {
+    padding-bottom: calc(74px + env(safe-area-inset-bottom));
+}
+
+.floating-contact-bar {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    z-index: 1200;
+
+    width: min(570px, calc(100% - 28px));
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+
+    background: rgba(24, 18, 20, 0.97);
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.32);
+
+    transform: translateX(-50%);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.floating-contact-item {
+    min-height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+
+    color: #ffffff;
+
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.floating-contact-item:last-child {
+    border-right: none;
+}
+
+.floating-contact-item svg {
+    font-size: 1rem;
+}
+
+.floating-call:hover {
+    background: #ffffff;
+    color: #211b1d;
+}
+
+.floating-whatsapp:hover {
+    background: #25d366;
+    color: #ffffff;
+}
+
+.floating-brochure {
+    background: var(--accent);
+}
+
+.floating-brochure:hover {
+    background: #a95f46;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding-bottom: calc(64px + env(safe-area-inset-bottom));
+    }
+
+    .floating-contact-bar {
+        bottom: 0;
+
+        width: 100%;
+
+        border-right: none;
+        border-bottom: none;
+        border-left: none;
+        border-radius: 0;
+    }
+
+    .floating-contact-item {
+        min-height: 58px;
+
+        font-size: 0.67rem;
+    }
+
+    .floating-contact-item svg {
+        font-size: 1.05rem;
+    }
+}

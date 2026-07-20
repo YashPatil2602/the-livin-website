@@ -9,15 +9,11 @@ const initialFormData = {
 };
 
 function EnquiryPopup() {
-
     const [isOpen, setIsOpen] = useState(false);
-
     const [formData, setFormData] = useState(initialFormData);
-
     const [statusMessage, setStatusMessage] = useState("");
 
     useEffect(() => {
-
         if (sessionStorage.getItem("popupClosed")) {
             return;
         }
@@ -27,7 +23,6 @@ function EnquiryPopup() {
         }, 2000);
 
         return () => clearTimeout(timer);
-
     }, []);
 
     const closePopup = () => {
@@ -36,18 +31,17 @@ function EnquiryPopup() {
     };
 
     const handleChange = (event) => {
+        const { name, value } = event.target;
 
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value,
-        });
+        setFormData((currentData) => ({
+            ...currentData,
+            [name]: value,
+        }));
 
         setStatusMessage("");
-
     };
 
     const handleSubmit = (event) => {
-
         event.preventDefault();
 
         if (
@@ -64,44 +58,41 @@ function EnquiryPopup() {
         );
 
         setFormData(initialFormData);
-
     };
 
-    if (!isOpen) return null;
+    if (!isOpen) {
+        return null;
+    }
 
     return (
-
         <div className="popup-overlay">
-
             <div className="popup-card">
-
                 <button
+                    type="button"
                     className="popup-close"
                     onClick={closePopup}
+                    aria-label="Close enquiry popup"
                 >
                     ×
                 </button>
 
-                <p className="popup-kicker">
-                    The Livin
-                </p>
+                <p className="popup-kicker">The Livin</p>
 
-                <h2>
-                    Enquire Now
-                </h2>
+                <h2>Enquire Now</h2>
 
                 <p className="popup-description">
-                    Submit your details and our project advisor will contact you.
+                    Submit your details and our project advisor will contact
+                    you.
                 </p>
 
-                <form onSubmit={handleSubmit}>
-
+                <form onSubmit={handleSubmit} noValidate>
                     <input
                         type="text"
                         name="name"
                         placeholder="Full Name"
                         value={formData.name}
                         onChange={handleChange}
+                        required
                     />
 
                     <input
@@ -111,6 +102,7 @@ function EnquiryPopup() {
                         value={formData.phone}
                         onChange={handleChange}
                         maxLength="10"
+                        required
                     />
 
                     <input
@@ -119,6 +111,7 @@ function EnquiryPopup() {
                         placeholder="Email Address"
                         value={formData.email}
                         onChange={handleChange}
+                        required
                     />
 
                     <textarea
@@ -129,27 +122,17 @@ function EnquiryPopup() {
                         onChange={handleChange}
                     />
 
-                    <button
-                        type="submit"
-                        className="popup-submit"
-                    >
+                    <button type="submit" className="popup-submit">
                         Request Callback
                     </button>
 
                     {statusMessage && (
-                        <p className="popup-status">
-                            {statusMessage}
-                        </p>
+                        <p className="popup-status">{statusMessage}</p>
                     )}
-
                 </form>
-
             </div>
-
         </div>
-
     );
-
 }
 
 export default EnquiryPopup;

@@ -3,35 +3,47 @@
     top: 0;
     left: 0;
     z-index: 1000;
+
     width: 100%;
-    background: rgba(18, 14, 15, 0.94);
+
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+    background: rgba(18, 14, 15, 0.94);
+
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .navbar-container {
-    width: min(1380px, 92%);
+    width: min(1380px, 94%);
     min-height: 76px;
     margin: 0 auto;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 25px;
+    gap: 20px;
 }
 
 .navbar-logo {
+    flex-shrink: 0;
+
     display: flex;
     align-items: baseline;
     gap: 7px;
+
     color: var(--white);
+
     font-family: "Cormorant Garamond", serif;
     font-size: 1.9rem;
     font-weight: 700;
     letter-spacing: 2px;
+    text-decoration: none;
 }
 
 .navbar-logo span {
     color: var(--accent);
+
     font-family: "Montserrat", sans-serif;
     font-size: 0.72rem;
     letter-spacing: 1px;
@@ -40,48 +52,117 @@
 .navbar-menu {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 22px;
 }
 
-.navbar-menu>a:not(.mobile-brochure-button) {
+.navbar-menu > a:not(.mobile-brochure-button) {
     position: relative;
+
     color: rgba(255, 255, 255, 0.88);
-    font-size: 0.73rem;
+
+    font-size: 0.7rem;
     font-weight: 500;
     letter-spacing: 0.6px;
+    text-decoration: none;
     text-transform: uppercase;
 }
 
-.navbar-menu>a:not(.mobile-brochure-button)::after {
+.navbar-menu > a:not(.mobile-brochure-button)::after {
     content: "";
+
     position: absolute;
     bottom: -8px;
     left: 0;
+
     width: 0;
     height: 2px;
+
     background: var(--accent);
+
     transition: width 0.3s ease;
 }
 
-.navbar-menu>a:hover::after {
+.navbar-menu > a:not(.mobile-brochure-button):hover::after {
     width: 100%;
+}
+
+/* Header action buttons */
+
+.navbar-actions {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-contact-button,
+.desktop-brochure-button,
+.mobile-brochure-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    min-height: 40px;
+    padding: 10px 13px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    color: var(--white);
+
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.navbar-contact-button svg,
+.desktop-brochure-button svg,
+.mobile-brochure-button svg {
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}
+
+.navbar-contact-button:hover,
+.desktop-brochure-button:hover,
+.mobile-brochure-button:hover {
+    transform: translateY(-2px);
+}
+
+.navbar-call-button:hover {
+    border-color: #ffffff;
+    background: #ffffff;
+    color: #211b1d;
+}
+
+.navbar-whatsapp-button {
+    border-color: rgba(37, 211, 102, 0.65);
+}
+
+.navbar-whatsapp-button:hover {
+    border-color: #25d366;
+    background: #25d366;
+    color: #ffffff;
 }
 
 .desktop-brochure-button,
 .mobile-brochure-button {
-    padding: 12px 17px;
-    border: 1px solid var(--accent);
-    color: var(--white);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    transition: 0.3s ease;
+    border-color: var(--accent);
+    background: var(--accent);
 }
 
 .desktop-brochure-button:hover,
 .mobile-brochure-button:hover {
-    background: var(--accent);
+    border-color: #a95f46;
+    background: #a95f46;
 }
 
 .mobile-brochure-button,
@@ -89,50 +170,149 @@
     display: none;
 }
 
+.navbar-toggle {
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+    color: var(--white);
+
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+/* Tablet */
+
+@media (max-width: 1180px) {
+    .navbar-menu {
+        gap: 15px;
+    }
+
+    .navbar-menu > a:not(.mobile-brochure-button) {
+        font-size: 0.64rem;
+    }
+
+    .navbar-contact-button span {
+        display: none;
+    }
+
+    .navbar-contact-button {
+        width: 40px;
+        padding: 0;
+    }
+}
+
+/* Mobile navigation */
+
 @media (max-width: 1050px) {
     .desktop-brochure-button {
         display: none;
     }
+
     .navbar-toggle {
         display: flex;
-        border: none;
-        background: transparent;
-        color: var(--white);
-        font-size: 1.5rem;
     }
+
     .navbar-menu {
         position: absolute;
         top: 76px;
         left: 0;
+
         width: 100%;
         padding: 30px 5%;
-        background: rgba(18, 14, 15, 0.99);
+
         flex-direction: column;
         align-items: flex-start;
+        gap: 24px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+        background: rgba(18, 14, 15, 0.99);
+
         transform: translateY(-130%);
         opacity: 0;
         visibility: hidden;
-        transition: 0.3s ease;
+
+        transition:
+            transform 0.3s ease,
+            opacity 0.3s ease,
+            visibility 0.3s ease;
     }
+
     .navbar-menu.active {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
     }
+
+    .navbar-menu > a:not(.mobile-brochure-button) {
+        width: 100%;
+
+        font-size: 0.78rem;
+    }
+
+    .navbar-menu > a:not(.mobile-brochure-button)::after {
+        bottom: -7px;
+    }
+
     .mobile-brochure-button {
-        display: inline-block;
+        display: inline-flex;
     }
 }
+
+/* Small mobile */
 
 @media (max-width: 520px) {
     .navbar-container {
         width: 94%;
         min-height: 68px;
+        gap: 8px;
     }
+
     .navbar-logo {
-        font-size: 1.5rem;
+        gap: 4px;
+
+        font-size: 1.4rem;
+        letter-spacing: 1px;
     }
+
+    .navbar-logo span {
+        font-size: 0.58rem;
+    }
+
     .navbar-menu {
         top: 68px;
+    }
+
+    .navbar-actions {
+        gap: 5px;
+    }
+
+    .navbar-contact-button {
+        width: 36px;
+        min-height: 36px;
+    }
+
+    .navbar-toggle {
+        width: 36px;
+        height: 36px;
+
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .navbar-logo {
+        font-size: 1.22rem;
+    }
+
+    .navbar-logo span {
+        display: none;
     }
 }
