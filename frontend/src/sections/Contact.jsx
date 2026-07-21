@@ -1,4 +1,7 @@
-﻿import { useState } from "react";
+import { useState } from "react";
+
+import { submitEnquiry } from "../services/enquiryService";
+
 
 const initialFormData = {
     name: "",
@@ -7,23 +10,24 @@ const initialFormData = {
     message: "",
 };
 
+
 function Contact() {
     const [formData, setFormData] = useState(initialFormData);
     const [statusMessage, setStatusMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (event) => {
-        const fieldName = event.target.name;
-        const fieldValue = event.target.value;
+        const { name, value } = event.target;
 
         setFormData((currentData) => ({
             ...currentData,
-            [fieldName]: fieldValue,
+            [name]: value,
         }));
 
         setStatusMessage("");
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (
@@ -31,24 +35,44 @@ function Contact() {
             !formData.phone.trim() ||
             !formData.email.trim()
         ) {
-            setStatusMessage("Please complete all required fields.");
+            setStatusMessage(
+                "Please complete all required fields."
+            );
             return;
         }
 
-        setStatusMessage(
-            "Thank you. Our project advisor will contact you shortly."
-        );
+        setIsSubmitting(true);
+        setStatusMessage("");
 
-        setFormData(initialFormData);
+        try {
+            const response = await submitEnquiry(
+                formData,
+                "contact"
+            );
+
+            setStatusMessage(response.message);
+            setFormData(initialFormData);
+        } catch (error) {
+            setStatusMessage(
+                error.message ||
+                    "Unable to submit your enquiry."
+            );
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <section id="contact" className="contact-section">
             <div className="contact-container">
                 <div className="contact-content">
-                    <p className="contact-kicker">Plan Your Visit</p>
+                    <p className="contact-kicker">
+                        Plan Your Visit
+                    </p>
 
-                    <h2>Find Your Future Home at The Livin</h2>
+                    <h2>
+                        Find Your Future Home at The Livin
+                    </h2>
 
                     <p className="contact-description">
                         Connect with our project advisor to learn more about
@@ -64,12 +88,16 @@ function Contact() {
 
                         <div>
                             <span>Configuration</span>
-                            <strong>{"1 & 2 BHK Residences"}</strong>
+                            <strong>
+                                {"1 & 2 BHK Residences"}
+                            </strong>
                         </div>
 
                         <div>
                             <span>Location</span>
-                            <strong>Kon Gaon, Kalyan West</strong>
+                            <strong>
+                                Kon Gaon, Kalyan West
+                            </strong>
                         </div>
                     </div>
 
@@ -129,6 +157,8 @@ function Contact() {
                                 value={formData.phone}
                                 onChange={handleChange}
                                 placeholder="Enter 10-digit number"
+                                inputMode="numeric"
+                                pattern="[0-9]{10}"
                                 maxLength="10"
                                 required
                             />
@@ -168,8 +198,11 @@ function Contact() {
                         <button
                             type="submit"
                             className="contact-submit-button"
+                            disabled={isSubmitting}
                         >
-                            Request a Callback
+                            {isSubmitting
+                                ? "Submitting..."
+                                : "Request a Callback"}
                         </button>
 
                         {statusMessage && (
@@ -188,5 +221,6 @@ function Contact() {
         </section>
     );
 }
+
 
 export default Contact;

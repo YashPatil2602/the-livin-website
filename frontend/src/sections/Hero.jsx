@@ -1,25 +1,46 @@
+import { useState } from "react";
+
+import { submitEnquiry } from "../services/enquiryService";
 import "../styles/hero.css";
 
+
 function Hero() {
-    const handleSubmit = (event) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const [isError, setIsError] = useState(false);
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const form = event.currentTarget;
         const formData = new FormData(form);
 
-        const enquiry = {
-            name: formData.get("name"),
-            phone: formData.get("phone"),
-            email: formData.get("email"),
-        };
+        setIsSubmitting(true);
+        setStatusMessage("");
+        setIsError(false);
 
-        console.log("Enquiry submitted:", enquiry);
+        try {
+            const response = await submitEnquiry(
+                {
+                    name: formData.get("name"),
+                    phone: formData.get("phone"),
+                    email: formData.get("email"),
+                    message: "Site visit enquiry from hero form",
+                },
+                "hero"
+            );
 
-        alert(
-            "Thank you for your enquiry. Our project advisor will contact you shortly."
-        );
-
-        form.reset();
+            setStatusMessage(response.message);
+            form.reset();
+        } catch (error) {
+            setIsError(true);
+            setStatusMessage(
+                error.message ||
+                    "Unable to submit your enquiry."
+            );
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -49,7 +70,10 @@ function Hero() {
                     </div>
 
                     <div className="hero-actions">
-                        <a href="#overview" className="primary-button">
+                        <a
+                            href="#overview"
+                            className="primary-button"
+                        >
                             Explore Project
                         </a>
 
@@ -125,9 +149,22 @@ function Hero() {
                         <button
                             type="submit"
                             className="submit-button"
+                            disabled={isSubmitting}
                         >
-                            Request a Callback
+                            {isSubmitting
+                                ? "Submitting..."
+                                : "Request a Callback"}
                         </button>
+
+                        {statusMessage && (
+                            <p
+                                className={`hero-form-status ${
+                                    isError ? "error" : "success"
+                                }`}
+                            >
+                                {statusMessage}
+                            </p>
+                        )}
                     </form>
 
                     <small>
@@ -139,5 +176,6 @@ function Hero() {
         </section>
     );
 }
+
 
 export default Hero;

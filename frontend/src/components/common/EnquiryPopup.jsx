@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+
+import { submitEnquiry } from "../../services/enquiryService";
 import "../../styles/popup.css";
+
 
 const initialFormData = {
     name: "",
@@ -8,10 +11,12 @@ const initialFormData = {
     message: "",
 };
 
+
 function EnquiryPopup() {
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState(initialFormData);
     const [statusMessage, setStatusMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         if (sessionStorage.getItem("popupClosed")) {
@@ -41,7 +46,7 @@ function EnquiryPopup() {
         setStatusMessage("");
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (
@@ -49,15 +54,31 @@ function EnquiryPopup() {
             !formData.phone.trim() ||
             !formData.email.trim()
         ) {
-            setStatusMessage("Please complete all required fields.");
+            setStatusMessage(
+                "Please complete all required fields."
+            );
             return;
         }
 
-        setStatusMessage(
-            "Thank you. Our project advisor will contact you shortly."
-        );
+        setIsSubmitting(true);
+        setStatusMessage("");
 
-        setFormData(initialFormData);
+        try {
+            const response = await submitEnquiry(
+                formData,
+                "popup"
+            );
+
+            setStatusMessage(response.message);
+            setFormData(initialFormData);
+        } catch (error) {
+            setStatusMessage(
+                error.message ||
+                    "Unable to submit your enquiry."
+            );
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (!isOpen) {
@@ -76,16 +97,21 @@ function EnquiryPopup() {
                     ×
                 </button>
 
-                <p className="popup-kicker">The Livin</p>
+                <p className="popup-kicker">
+                    The Livin
+                </p>
 
                 <h2>Enquire Now</h2>
 
                 <p className="popup-description">
-                    Submit your details and our project advisor will contact
-                    you.
+                    Submit your details and our project
+                    advisor will contact you.
                 </p>
 
-                <form onSubmit={handleSubmit} noValidate>
+                <form
+                    onSubmit={handleSubmit}
+                    noValidate
+                >
                     <input
                         type="text"
                         name="name"
@@ -122,17 +148,26 @@ function EnquiryPopup() {
                         onChange={handleChange}
                     />
 
-                    <button type="submit" className="popup-submit">
-                        Request Callback
+                    <button
+                        type="submit"
+                        className="popup-submit"
+                        disabled={isSubmitting}
+                    >
+                        {isSubmitting
+                            ? "Submitting..."
+                            : "Request Callback"}
                     </button>
 
                     {statusMessage && (
-                        <p className="popup-status">{statusMessage}</p>
+                        <p className="popup-status">
+                            {statusMessage}
+                        </p>
                     )}
                 </form>
             </div>
         </div>
     );
 }
+
 
 export default EnquiryPopup;

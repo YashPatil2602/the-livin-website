@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Backend private/runtime files
+backend/.env
+backend/.venv/
+backend/instance/
+backend/__pycache__/
+backend/**/__pycache__/
