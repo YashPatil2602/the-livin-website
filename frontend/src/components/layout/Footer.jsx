@@ -32,7 +32,7 @@ import { openEnquiryPopup } from "../../utils/enquiryPopup";
         openEnquiryPopup({
             type: "location",
             source: "footer-google-maps",
-            url: "https://maps.app.goo.gl/rz7yRhMNLx2KFBG29",
+            url: "https://www.google.com/maps/place/1+Bhk+%26+2+Bhk+in+Kalyan/@19.2450653,73.1119457,17z/data=!4m16!1m9!3m8!1s0x3be795e12b5bc395:0xcf6c345e0d0cd578!2s1+Bhk+%26+2+Bhk+in+Kalyan!8m2!3d19.2450653!4d73.1119457!9m1!1b1!16s%2Fg%2F11kpsvr17w!3m5!1s0x3be795e12b5bc395:0xcf6c345e0d0cd578!8m2!3d19.2450653!4d73.1119457!16s%2Fg%2F11kpsvr17w!18m1!1e1",
             target: "_blank",
         });
     };
@@ -94,7 +94,7 @@ import { openEnquiryPopup } from "../../utils/enquiryPopup";
                         </p>
 
                         <a
-                            href="https://maps.app.goo.gl/rz7yRhMNLx2KFBG29"
+                            href="https://www.google.com/maps/place/1+Bhk+%26+2+Bhk+in+Kalyan/@19.2450653,73.1119457,17z/data=!4m16!1m9!3m8!1s0x3be795e12b5bc395:0xcf6c345e0d0cd578!2s1+Bhk+%26+2+Bhk+in+Kalyan!8m2!3d19.2450653!4d73.1119457!9m1!1b1!16s%2Fg%2F11kpsvr17w!3m5!1s0x3be795e12b5bc395:0xcf6c345e0d0cd578!8m2!3d19.2450653!4d73.1119457!16s%2Fg%2F11kpsvr17w!18m1!1e1"
                             target="_blank"
                             rel="noreferrer"
                             onClick={handleMapClick}
