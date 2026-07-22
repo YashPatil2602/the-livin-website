@@ -28,10 +28,7 @@ function Location() {
         openEnquiryPopup({
             type: "location",
             source: "location-google-maps",
-            url: (
-                "https://www.google.com/maps/search/" +
-                "?api=1&query=Kon+Gaon+Kalyan+West"
-            ),
+            url: "https://maps.app.goo.gl/rz7yRhMNLx2KFBG29",
             target: "_blank",
         });
     };
@@ -82,7 +79,7 @@ function Location() {
                     </div>
 
                     <a
-                        href="https://www.google.com/maps/search/?api=1&query=Kon+Gaon+Kalyan+West"
+                        href="https://maps.app.goo.gl/rz7yRhMNLx2KFBG29"
                         target="_blank"
                         rel="noreferrer"
                         className="location-button"

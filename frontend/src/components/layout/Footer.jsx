@@ -32,10 +32,7 @@ import { openEnquiryPopup } from "../../utils/enquiryPopup";
         openEnquiryPopup({
             type: "location",
             source: "footer-google-maps",
-            url: (
-                "https://www.google.com/maps/search/" +
-                "?api=1&query=Kon+Gaon+Kalyan+West"
-            ),
+            url: "https://maps.app.goo.gl/rz7yRhMNLx2KFBG29",
             target: "_blank",
         });
     };
@@ -97,7 +94,7 @@ import { openEnquiryPopup } from "../../utils/enquiryPopup";
                         </p>
 
                         <a
-                            href="https://www.google.com/maps/search/?api=1&query=Kon+Gaon+Kalyan+West"
+                            href="https://maps.app.goo.gl/rz7yRhMNLx2KFBG29"
                             target="_blank"
                             rel="noreferrer"
                             onClick={handleMapClick}
