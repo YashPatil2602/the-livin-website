@@ -1,5 +1,7 @@
 ﻿import { useState } from "react";
 
+import { openEnquiryPopup } from "../utils/enquiryPopup";
+
 const floorPlans = [
     {
         id: "1-bhk",
@@ -57,6 +59,29 @@ function FloorPlans() {
     const selectedPlan =
         floorPlans.find((plan) => plan.id === selectedPlanId) ||
         floorPlans[0];
+
+    const handleViewFullPlan = (event) => {
+        event.preventDefault();
+
+        openEnquiryPopup({
+            type: "details",
+            source: `floor-plan-${selectedPlan.id}`,
+            url: selectedPlan.image,
+            target: "_blank",
+        });
+    };
+
+
+    const handleBrochureClick = (event) => {
+        event.preventDefault();
+
+        openEnquiryPopup({
+            type: "brochure",
+            source: "floor-plans-brochure",
+            url: "/brochure.pdf",
+        });
+    };
+
 
     return (
         <section id="floor-plans" className="floor-plans-section">
@@ -130,15 +155,17 @@ function FloorPlans() {
                             target="_blank"
                             rel="noreferrer"
                             className="floor-plan-button"
+                            onClick={handleViewFullPlan}
                         >
                             View Full Plan
                         </a>
 
                         <a
-                            href="/images/brochure.pdf.pdf"
+                            href="/brochure.pdf"
                             target="_blank"
                             rel="noreferrer"
                             className="floor-plan-brochure-link"
+                            onClick={handleBrochureClick}
                         >
                             Download Complete Brochure
                         </a>

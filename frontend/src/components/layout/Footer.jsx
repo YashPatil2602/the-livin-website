@@ -1,5 +1,45 @@
+import { openEnquiryPopup } from "../../utils/enquiryPopup";
+
 ﻿function Footer() {
     const currentYear = new Date().getFullYear();
+
+
+    const handleContactClick = (event) => {
+        event.preventDefault();
+
+        openEnquiryPopup({
+            type: "contact",
+            source: "footer-contact",
+            sectionId: "contact",
+        });
+    };
+
+
+    const handleBrochureClick = (event) => {
+        event.preventDefault();
+
+        openEnquiryPopup({
+            type: "brochure",
+            source: "footer-brochure",
+            url: "/brochure.pdf",
+        });
+    };
+
+
+    const handleMapClick = (event) => {
+        event.preventDefault();
+
+        openEnquiryPopup({
+            type: "location",
+            source: "footer-google-maps",
+            url: (
+                "https://www.google.com/maps/search/" +
+                "?api=1&query=Kon+Gaon+Kalyan+West"
+            ),
+            target: "_blank",
+        });
+    };
+
 
     return (
         <footer className="site-footer">
@@ -30,12 +70,18 @@
                         <h3>Project</h3>
 
                         <a href="#location">Location</a>
-                        <a href="#contact">Contact</a>
+                        <a
+                            href="#contact"
+                            onClick={handleContactClick}
+                        >
+                            Contact
+                        </a>
 
                         <a
-                            href="/images/brochure.pdf.pdf"
+                            href="/brochure.pdf"
                             target="_blank"
                             rel="noreferrer"
+                            onClick={handleBrochureClick}
                         >
                             Download Brochure
                         </a>
@@ -54,6 +100,7 @@
                             href="https://www.google.com/maps/search/?api=1&query=Kon+Gaon+Kalyan+West"
                             target="_blank"
                             rel="noreferrer"
+                            onClick={handleMapClick}
                         >
                             View on Google Maps
                         </a>

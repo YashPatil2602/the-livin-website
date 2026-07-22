@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 import { submitEnquiry } from "../services/enquiryService";
+import { openEnquiryPopup } from "../utils/enquiryPopup";
+
 import "../styles/hero.css";
 
 
@@ -43,9 +45,25 @@ function Hero() {
         }
     };
 
+    const handleExploreProject = (event) => {
+        event.preventDefault();
+
+        openEnquiryPopup({
+            type: "details",
+            source: "hero-explore-project",
+            sectionId: "overview",
+        });
+    };
+
+
     return (
         <section id="home" className="hero">
             <div className="hero-overlay" />
+
+            <div
+                className="hero-mobile-image"
+                aria-hidden="true"
+            />
 
             <div className="hero-container">
                 <div className="hero-content">
@@ -73,16 +91,9 @@ function Hero() {
                         <a
                             href="#overview"
                             className="primary-button"
+                            onClick={handleExploreProject}
                         >
                             Explore Project
-                        </a>
-
-                        <a
-                            href="/brochure.pdf"
-                            download
-                            className="secondary-button"
-                        >
-                            Download Brochure
                         </a>
                     </div>
                 </div>

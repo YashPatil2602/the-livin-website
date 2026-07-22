@@ -1,3 +1,5 @@
+import { openEnquiryPopup } from "../utils/enquiryPopup";
+
 ﻿const locationHighlights = [
     {
         id: 1,
@@ -20,6 +22,21 @@
 ];
 
 function Location() {
+    const handleMapClick = (event) => {
+        event.preventDefault();
+
+        openEnquiryPopup({
+            type: "location",
+            source: "location-google-maps",
+            url: (
+                "https://www.google.com/maps/search/" +
+                "?api=1&query=Kon+Gaon+Kalyan+West"
+            ),
+            target: "_blank",
+        });
+    };
+
+
     return (
         <section id="location" className="location-section">
             <div className="location-container">
@@ -69,6 +86,7 @@ function Location() {
                         target="_blank"
                         rel="noreferrer"
                         className="location-button"
+                        onClick={handleMapClick}
                     >
                         Open in Google Maps
                     </a>

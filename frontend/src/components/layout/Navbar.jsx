@@ -1,33 +1,132 @@
 import { useState } from "react";
+
 import {
     FaBars,
-    FaTimes,
-    FaPhoneAlt,
-    FaWhatsapp,
     FaDownload,
+    FaPhoneAlt,
+    FaTimes,
+    FaWhatsapp,
 } from "react-icons/fa";
 
 import "../../styles/navbar.css";
 
+
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
 
+
     const navigationLinks = [
-        { id: 1, name: "Home", href: "#home" },
-        { id: 2, name: "Overview", href: "#overview" },
-        { id: 3, name: "Amenities", href: "#amenities" },
-        { id: 4, name: "Floor Plans", href: "#floor-plans" },
-        { id: 5, name: "Gallery", href: "#gallery" },
-        { id: 6, name: "Location", href: "#location" },
+        {
+            id: 1,
+            name: "Home",
+            href: "#home",
+        },
+        {
+            id: 2,
+            name: "Overview",
+            href: "#overview",
+        },
+        {
+            id: 3,
+            name: "Amenities",
+            href: "#amenities",
+        },
+        {
+            id: 4,
+            name: "Floor Plans",
+            href: "#floor-plans",
+        },
+        {
+            id: 5,
+            name: "Gallery",
+            href: "#gallery",
+        },
+        {
+            id: 6,
+            name: "Location",
+            href: "#location",
+        },
+        {
+            id: 7,
+            name: "Contact",
+            href: "#contact",
+            requiresEnquiry: true,
+        },
     ];
+
 
     const toggleMenu = () => {
         setMenuOpen((currentValue) => !currentValue);
     };
 
+
     const closeMenu = () => {
         setMenuOpen(false);
     };
+
+
+    const openEnquiryPopup = (action) => {
+        window.dispatchEvent(
+            new CustomEvent("open-enquiry-popup", {
+                detail: action,
+            })
+        );
+    };
+
+
+    const handleNavigationClick = (
+        event,
+        link
+    ) => {
+        closeMenu();
+
+        if (!link.requiresEnquiry) {
+            return;
+        }
+
+        event.preventDefault();
+
+        openEnquiryPopup({
+            type: "contact",
+            source: "navbar-contact",
+            sectionId: "contact",
+        });
+    };
+
+
+    const handleCallClick = (event) => {
+        event.preventDefault();
+
+        openEnquiryPopup({
+            type: "call",
+            source: "navbar-call",
+            url: "tel:8291919189",
+        });
+    };
+
+
+    const handleWhatsAppClick = (event) => {
+        event.preventDefault();
+
+        openEnquiryPopup({
+            type: "whatsapp",
+            source: "navbar-whatsapp",
+            url: "https://wa.me/918291919189",
+        });
+    };
+
+
+    const handleBrochureClick = (event) => {
+        event.preventDefault();
+        closeMenu();
+
+        openEnquiryPopup({
+            type: "brochure",
+            source: "navbar-brochure",
+            url: "/brochure.pdf",
+        });
+    };
+
 
     return (
         <header className="navbar">
@@ -53,7 +152,12 @@ function Navbar() {
                         <a
                             key={link.id}
                             href={link.href}
-                            onClick={closeMenu}
+                            onClick={(event) =>
+                                handleNavigationClick(
+                                    event,
+                                    link
+                                )
+                            }
                         >
                             {link.name}
                         </a>
@@ -61,12 +165,14 @@ function Navbar() {
 
                     <a
                         href="/brochure.pdf"
-                        download
                         className="mobile-brochure-button"
-                        onClick={closeMenu}
+                        onClick={handleBrochureClick}
                     >
                         <FaDownload aria-hidden="true" />
-                        Download Brochure
+
+                        <span>
+                            Download Brochure
+                        </span>
                     </a>
                 </nav>
 
@@ -75,28 +181,31 @@ function Navbar() {
                         href="tel:8291919189"
                         className="navbar-contact-button navbar-call-button"
                         aria-label="Call The Livin"
+                        onClick={handleCallClick}
                     >
                         <FaPhoneAlt aria-hidden="true" />
+
                         <span>Call</span>
                     </a>
 
                     <a
                         href="https://wa.me/918291919189"
-                        target="_blank"
-                        rel="noreferrer"
                         className="navbar-contact-button navbar-whatsapp-button"
                         aria-label="Contact The Livin on WhatsApp"
+                        onClick={handleWhatsAppClick}
                     >
                         <FaWhatsapp aria-hidden="true" />
+
                         <span>WhatsApp</span>
                     </a>
 
                     <a
                         href="/brochure.pdf"
-                        download
                         className="desktop-brochure-button"
+                        onClick={handleBrochureClick}
                     >
                         <FaDownload aria-hidden="true" />
+
                         <span>Brochure</span>
                     </a>
 
@@ -111,12 +220,17 @@ function Navbar() {
                         }
                         aria-expanded={menuOpen}
                     >
-                        {menuOpen ? <FaTimes /> : <FaBars />}
+                        {menuOpen ? (
+                            <FaTimes />
+                        ) : (
+                            <FaBars />
+                        )}
                     </button>
                 </div>
             </div>
         </header>
     );
 }
+
 
 export default Navbar;

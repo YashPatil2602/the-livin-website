@@ -4,6 +4,7 @@ import ssl
 from email.message import EmailMessage
 
 from flask import current_app
+from sqlalchemy import func, or_
 
 from database.db import db
 from models.enquiry_model import Enquiry
@@ -22,6 +23,9 @@ def clean_text(value):
 
 
 def validate_enquiry(data):
+    if not isinstance(data, dict):
+        raise ValueError("Invalid enquiry data.")
+
     name = clean_text(data.get("name"))
     phone = clean_text(data.get("phone"))
     email = clean_text(data.get("email")).lower()
@@ -50,6 +54,20 @@ def validate_enquiry(data):
         "message": message,
         "source": source[:50],
     }
+
+
+def find_existing_enquiry(phone, email):
+    return (
+        Enquiry.query
+        .filter(
+            or_(
+                Enquiry.phone == phone,
+                func.lower(Enquiry.email) == email.lower(),
+            )
+        )
+        .order_by(Enquiry.id.desc())
+        .first()
+    )
 
 
 def send_notification_email(enquiry):
@@ -122,6 +140,14 @@ def send_notification_email(enquiry):
 def create_enquiry(data):
     validated_data = validate_enquiry(data)
 
+    existing_enquiry = find_existing_enquiry(
+        validated_data["phone"],
+        validated_data["email"],
+    )
+
+    if existing_enquiry:
+        return existing_enquiry, True
+
     enquiry = Enquiry(**validated_data)
 
     db.session.add(enquiry)
@@ -137,4 +163,4 @@ def create_enquiry(data):
 
     db.session.commit()
 
-    return enquiry
+    return enquiry, False
