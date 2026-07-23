@@ -156,19 +156,18 @@
     }
 }
 
+/* Prevent floating buttons from covering mobile forms */
 
-/* Prevent floating icons from covering mobile hero content */
-
-.floating-contact-icons {
+.floating-contact-icons,
+.floating-brochure-tab {
     transition:
         opacity 0.25s ease,
         visibility 0.25s ease,
         transform 0.25s ease;
 }
 
-
 @media (max-width: 820px) {
-    .floating-contact-icons.hero-is-visible {
+    .floating-contact-icons.floating-ui-hidden {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
@@ -176,11 +175,31 @@
         transform: translateY(14px);
     }
 
-    .floating-contact-icons.floating-icons-visible {
+    .floating-contact-icons.floating-ui-visible {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
 
         transform: translateY(0);
+    }
+
+    .floating-brochure-tab.floating-ui-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transform:
+            translateY(-50%)
+            translateX(18px);
+    }
+
+    .floating-brochure-tab.floating-ui-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+
+        transform:
+            translateY(-50%)
+            translateX(0);
     }
 }

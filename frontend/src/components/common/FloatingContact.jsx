@@ -13,31 +13,58 @@ function FloatingContact() {
     const [isHeroVisible, setIsHeroVisible] =
         useState(true);
 
+    const [isContactVisible, setIsContactVisible] =
+        useState(false);
+
 
     useEffect(() => {
         const heroSection =
             document.getElementById("home");
 
-        if (!heroSection) {
-            setIsHeroVisible(false);
-            return undefined;
-        }
+        const contactSection =
+            document.getElementById("contact");
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsHeroVisible(
-                    entry.isIntersecting
-                );
-            },
-            {
-                threshold: 0.12,
+        const observers = [];
+
+        const observeSection = (
+            section,
+            setVisibility
+        ) => {
+            if (!section) {
+                return;
             }
+
+            const observer = new IntersectionObserver(
+                ([entry]) => {
+                    setVisibility(entry.isIntersecting);
+                },
+                {
+                    threshold: 0.12,
+                }
+            );
+
+            observer.observe(section);
+            observers.push(observer);
+        };
+
+        observeSection(
+            heroSection,
+            setIsHeroVisible
         );
 
-        observer.observe(heroSection);
+        observeSection(
+            contactSection,
+            setIsContactVisible
+        );
+
+        if (!heroSection) {
+            setIsHeroVisible(false);
+        }
 
         return () => {
-            observer.disconnect();
+            observers.forEach((observer) => {
+                observer.disconnect();
+            });
         };
     }, []);
 
@@ -78,14 +105,19 @@ function FloatingContact() {
     };
 
 
+    const shouldHideFloatingUi =
+        isHeroVisible || isContactVisible;
+
+    const visibilityClass =
+        shouldHideFloatingUi
+            ? "floating-ui-hidden"
+            : "floating-ui-visible";
+
+
     return (
         <>
             <div
-                className={`floating-contact-icons ${
-                    isHeroVisible
-                        ? "hero-is-visible"
-                        : "floating-icons-visible"
-                }`}
+                className={`floating-contact-icons ${visibilityClass}`}
                 aria-label="Contact options"
             >
                 <button
@@ -111,7 +143,7 @@ function FloatingContact() {
 
             <button
                 type="button"
-                className="floating-brochure-tab"
+                className={`floating-brochure-tab ${visibilityClass}`}
                 onClick={handleBrochureClick}
                 aria-label="View The Livin brochure"
             >
