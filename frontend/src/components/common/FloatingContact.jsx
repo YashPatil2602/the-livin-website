@@ -88,11 +88,11 @@ function FloatingContact() {
 
 
     const handleWhatsAppClick = () => {
-        openEnquiryPopup({
-            type: "whatsapp",
-            source: "floating-whatsapp",
-            url: "https://wa.me/918291919189",
-        });
+        window.open(
+            "https://wa.me/918291919189",
+            "_blank",
+            "noopener,noreferrer"
+        );
     };
 
 

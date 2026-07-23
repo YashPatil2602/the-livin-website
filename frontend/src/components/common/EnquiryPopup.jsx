@@ -8,15 +8,12 @@ import {
     FaMapMarkerAlt,
     FaPhoneAlt,
     FaShieldAlt,
-    FaWhatsapp,
 } from "react-icons/fa";
 
 import { submitEnquiry } from "../../services/enquiryService";
 
 import "../../styles/popup.css";
 
-
-const STORAGE_KEY = "theLivinRegisteredUser";
 
 const initialFormData = {
     name: "",
@@ -36,14 +33,6 @@ const actionDetails = {
         buttonLabel: "Continue to Call",
     },
 
-    whatsapp: {
-        icon: FaWhatsapp,
-        kicker: "Chat With Us",
-        title: "Connect on WhatsApp",
-        description:
-            "Share your details before continuing to WhatsApp for quick project assistance.",
-        buttonLabel: "Continue to WhatsApp",
-    },
 
     brochure: {
         icon: FaFilePdf,
@@ -92,22 +81,6 @@ const actionDetails = {
 };
 
 
-function getSavedRegistration() {
-    try {
-        const savedRegistration =
-            localStorage.getItem(STORAGE_KEY);
-
-        if (!savedRegistration) {
-            return null;
-        }
-
-        return JSON.parse(savedRegistration);
-    } catch {
-        return null;
-    }
-}
-
-
 function EnquiryPopup() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -138,37 +111,16 @@ function EnquiryPopup() {
 
 
     const openPopup = (action = null) => {
-        const savedRegistration =
-            getSavedRegistration();
-
         setPendingAction(action);
         setIsSubmitting(false);
+        setFormData(initialFormData);
 
-        if (savedRegistration) {
-            setFormData({
-                ...initialFormData,
-                ...savedRegistration,
-            });
+        setStatus({
+            type: "",
+            message: "",
+        });
 
-            setStatus({
-                type: "existing",
-                message:
-                    "You have already submitted an enquiry. " +
-                    "Our project advisor will contact you shortly.",
-            });
-
-            setSubmissionComplete(true);
-        } else {
-            setFormData(initialFormData);
-
-            setStatus({
-                type: "",
-                message: "",
-            });
-
-            setSubmissionComplete(false);
-        }
-
+        setSubmissionComplete(false);
         setIsOpen(true);
     };
 
@@ -308,20 +260,8 @@ function EnquiryPopup() {
                 pendingAction?.source || "popup"
             );
 
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify({
-                    name: formData.name.trim(),
-                    phone: formData.phone.trim(),
-                    email: formData.email.trim(),
-                    message: formData.message.trim(),
-                })
-            );
-
             setStatus({
-                type: response.already_exists
-                    ? "existing"
-                    : "success",
+                type: "success",
                 message: response.message,
             });
 
@@ -336,20 +276,6 @@ function EnquiryPopup() {
         } finally {
             setIsSubmitting(false);
         }
-    };
-
-
-    const startNewEnquiry = () => {
-        localStorage.removeItem(STORAGE_KEY);
-
-        setFormData(initialFormData);
-
-        setStatus({
-            type: "",
-            message: "",
-        });
-
-        setSubmissionComplete(false);
     };
 
 
@@ -369,17 +295,6 @@ function EnquiryPopup() {
             return;
         }
 
-        if (action.type === "whatsapp") {
-            window.open(
-                action.url ||
-                    "https://wa.me/918291919189",
-                "_blank",
-                "noopener,noreferrer"
-            );
-
-            setIsOpen(false);
-            return;
-        }
 
         if (action.type === "brochure") {
             window.open(
@@ -532,9 +447,7 @@ function EnquiryPopup() {
                             </span>
 
                             <h3>
-                                {status.type === "existing"
-                                    ? "You’re Already Registered"
-                                    : "Enquiry Received"}
+                                Enquiry Received
                             </h3>
 
                             <p>{status.message}</p>
@@ -554,13 +467,6 @@ function EnquiryPopup() {
                                     <FaArrowRight />
                                 </button>
 
-                                <button
-                                    type="button"
-                                    className="popup-secondary-button"
-                                    onClick={startNewEnquiry}
-                                >
-                                    Use Different Details
-                                </button>
                             </div>
                         </div>
                     ) : (

@@ -24,35 +24,15 @@ def submit_enquiry():
     request_data = request.get_json(silent=True) or {}
 
     try:
-        enquiry, already_exists = create_enquiry(
-            request_data
-        )
-
-        if already_exists:
-            return (
-                jsonify(
-                    {
-                        "success": True,
-                        "already_exists": True,
-                        "message": (
-                            "You have already submitted an enquiry. "
-                            "Our project advisor will contact you shortly."
-                        ),
-                        "enquiry_id": enquiry.id,
-                        "email_sent": enquiry.email_sent,
-                    }
-                ),
-                200,
-            )
+        enquiry = create_enquiry(request_data)
 
         return (
             jsonify(
                 {
                     "success": True,
-                    "already_exists": False,
                     "message": (
-                        "Thank you. Our project advisor "
-                        "will contact you shortly."
+                        "Thank you. Your enquiry has been received. "
+                        "Our project advisor will contact you shortly."
                     ),
                     "enquiry_id": enquiry.id,
                     "email_sent": enquiry.email_sent,
